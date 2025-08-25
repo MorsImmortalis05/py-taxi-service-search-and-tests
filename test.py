@@ -17,7 +17,7 @@ class TestManufacturerSearchForm(TestCase):
         self.client.force_login(self.driver)
 
     def test_form_returns_correct_results(self):
-        response = self.client.get(reverse('taxi:manufacturer-list'),
+        response = self.client.get(reverse("taxi:manufacturer-list"),
                                    {"name": "mons"})
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "MonsterCar")
@@ -36,8 +36,8 @@ class TestCarSearchForm(TestCase):
         self.client.force_login(self.driver)
 
     def test_form_returns_correct_results(self):
-        response = self.client.get(reverse('taxi:car-list'),
-                                   {'model': 'cool'})
+        response = self.client.get(reverse("taxi:car-list"),
+                                   {"model": "cool"})
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Cool Car 3")
         self.assertNotContains(response, "Fancy Machine")
@@ -64,7 +64,7 @@ class TestDriverSearchForm(TestCase):
 
     def test_form_returns_correct_results(self):
         response = self.client.get(reverse(
-            'taxi:driver-list'), {'username': 'lo'})
+            "taxi:driver-list"), {"username": "lo"})
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "lololo")
         self.assertNotContains(response, "kekeke")
